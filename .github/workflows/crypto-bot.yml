@@ -12,6 +12,7 @@ permissions:
 jobs:
   check-channel:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,6 +30,7 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           BOT_CHAT_ID: ${{ secrets.BOT_CHAT_ID }}
           CHANNEL_USERNAME: ${{ secrets.CHANNEL_USERNAME }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python main.py
 
       - name: Save last post state
@@ -38,4 +40,3 @@ jobs:
           git add last_post.json
           git diff --cached --quiet || git commit -m "Update last post state"
           git push
-          
